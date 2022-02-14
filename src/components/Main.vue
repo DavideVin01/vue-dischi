@@ -33,6 +33,7 @@ export default {
       musicCards: [],
     };
   },
+  props: ["selectedGenre"],
   methods: {
     fetchMusic() {
       axios

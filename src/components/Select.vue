@@ -1,5 +1,5 @@
 <template>
-  <select v-model="selected">
+  <select v-model="selected" @change="changeOption">
     <option value="">{{ placeholder }}</option>
     <option v-for="(option, index) in options" :key="index || option.id">
       {{ option }}
@@ -15,6 +15,11 @@ export default {
     return {
       selected: "",
     };
+  },
+  methods: {
+    changeOption() {
+      this.$emit("change-option", this.selected);
+    },
   },
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header :genres="genres" />
-    <Main @fetch-genres="setGenres" />
+    <Header :genres="genres" @change-option="setSelectedGenre" />
+    <Main @fetch-genres="setGenres" :selected-genre="selectedGenre" />
   </div>
 </template>
 
@@ -17,11 +17,15 @@ export default {
   data() {
     return {
       genres: [],
+      selectedGenre: "",
     };
   },
   methods: {
     setGenres(genres) {
       this.genres = genres;
+    },
+    setSelectedGenre(genre) {
+      this.selectedGenre = genre;
     },
   },
 };

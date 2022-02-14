@@ -1,7 +1,7 @@
 <template>
   <div>
-    <Header />
-    <Main />
+    <Header :genres="genres" />
+    <Main @fetch-genres="setGenres" />
   </div>
 </template>
 
@@ -13,6 +13,16 @@ export default {
   components: {
     Header,
     Main,
+  },
+  data() {
+    return {
+      genres: [],
+    };
+  },
+  methods: {
+    setGenres(genres) {
+      this.genres = genres;
+    },
   },
 };
 </script>

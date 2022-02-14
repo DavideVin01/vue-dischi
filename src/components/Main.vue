@@ -33,10 +33,27 @@ export default {
       musicCards: [],
     };
   },
-  mounted() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((res) => (this.musicCards = res.data.response));
+  methods: {
+    fetchMusic() {
+      axios
+        .get("https://flynn.boolean.careers/exercises/api/array/music")
+        .then((res) => {
+          this.musicCards = res.data.response;
+          this.setGenre();
+        });
+    },
+    setGenre() {
+      const genres = [];
+      this.musicCards.forEach((musicCard) => {
+        const { genre } = musicCard;
+        if (!genres.includes(genre)) genres.push(genre);
+      });
+
+      this.$emit("fetch-genres", genres);
+    },
+  },
+  created() {
+    this.fetchMusic();
   },
 };
 </script>

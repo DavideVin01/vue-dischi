@@ -1,18 +1,40 @@
 <template>
-  <header class="d-flex align-items-center">
-    <img
-      class="grow"
-      role="button"
-      id="spotify-logo"
-      src="../assets/img/Spotify.png"
-      alt="Spotify Logo"
-    />
+  <header class="d-flex align-items-center justify-content-between px-5">
+    <div>
+      <img
+        class="grow"
+        role="button"
+        id="spotify-logo"
+        src="../assets/img/Spotify.png"
+        alt="Spotify Logo"
+      />
+    </div>
+    <div>
+      <Select placeholder="Seleziona un genere" :options="genres" />
+    </div>
   </header>
 </template>
 
 <script>
+import Select from "./Select.vue";
 export default {
   name: "Header",
+  components: {
+    Select,
+  },
+  data() {
+    return {
+      selectTerm: "",
+    };
+  },
+  props: ["genres"],
+  methods: {
+    filteredGenres() {
+      return this.response.filter((element) => {
+        element.genre.includes(this.selectTerm);
+      });
+    },
+  },
 };
 </script>
 

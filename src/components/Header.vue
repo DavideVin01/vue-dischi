@@ -10,7 +10,11 @@
       />
     </div>
     <div>
-      <Select placeholder="Seleziona un genere" :options="genres" />
+      <Select
+        placeholder="Seleziona un genere"
+        :options="genres"
+        @change-option="selectedGenre"
+      />
     </div>
   </header>
 </template>
@@ -22,17 +26,10 @@ export default {
   components: {
     Select,
   },
-  data() {
-    return {
-      selectTerm: "",
-    };
-  },
   props: ["genres"],
   methods: {
-    filteredGenres() {
-      return this.response.filter((element) => {
-        element.genre.includes(this.selectTerm);
-      });
+    selectedGenre(selected) {
+      this.$emit("selected-genre", selected);
     },
   },
 };

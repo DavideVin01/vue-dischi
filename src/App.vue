@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :genres="genres" @change-option="setSelectedGenre" />
+    <Header :genres="genres" @selected-genre="setSelectedGenre" />
     <Main @fetch-genres="setGenres" :selected-genre="selectedGenre" />
   </div>
 </template>

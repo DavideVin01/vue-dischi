@@ -4,8 +4,9 @@
       <div class="d-flex justify-content-center flex-wrap container">
         <div
           class="music-box m-3 grow"
-          v-for="(card, index) in musicCards"
+          v-for="(card, index) in filteredMusics"
           :key="index"
+          :card="card"
         >
           <MusicCard
             :poster="card.poster"
@@ -34,6 +35,15 @@ export default {
     };
   },
   props: ["selectedGenre"],
+  computed: {
+    filteredMusics() {
+      if (!this.selectedGenre) return this.musicCards;
+
+      return this.musicCards.filter((card) => {
+        return card.genre === this.selectedGenre;
+      });
+    },
+  },
   methods: {
     fetchMusic() {
       axios
